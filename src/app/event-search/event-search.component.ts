@@ -1,22 +1,20 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { EventsService } from '../services/events.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { BaseComponent } from '../base-component';
 import { EventItem } from '../models/event.model';
 import { PagedEvents } from '../models/paged-events.model';
-import { HttpErrorResponse } from '@angular/common/http';
-import { BaseComponent } from '../base-component';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { EventsService } from '../services/events.service';
 
 
 @Component({
   selector: 'app-events',
   templateUrl: './event-search.component.html',
-  styleUrls: ['./event-search.component.css'],
-  providers: [
-    EventsService
-  ]
+  styleUrls: ['./event-search.component.css']
 })
 export class EventSearchComponent extends BaseComponent implements OnInit {
   displayedColumns: string[] = ['event_date', 'event_type', 'event_summary', 'event_size'];
@@ -24,6 +22,7 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   defaultDuration = '30';
   startDateControl = new FormControl(this.defaultStartDate, [Validators.required]);
   durationControl = new FormControl(this.defaultDuration, [Validators.required]);
+  selectedEventId: string;
   searchForm = new FormGroup({
     startDate: this.startDateControl,
     duration: this.durationControl
@@ -33,7 +32,8 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   currentPageSize = 20;
   currentTotalResults = 0;
   dataSource = new MatTableDataSource<EventItem>(this.events);
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSidenav, { static: true }) eventDetailsSide: MatSidenav;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -46,6 +46,12 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   }
 
   submitSearch() {
+    this.closeDetails();
+    this.currentPageIndex = 0;
+    this.executeSearch();
+  }
+
+  executeSearch() {
     if (this.searchForm.valid) {
       this.eventsService.searchEvents(
         this.startDateControl.value,
@@ -67,11 +73,17 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   pageChange(pagingEvent: PageEvent) {
     this.currentPageIndex = pagingEvent.pageIndex;
     this.currentPageSize = pagingEvent.pageSize;
-    this.submitSearch();
+    this.executeSearch();
   }
 
-  onRowClicked(row) {
-    console.log(row);
+  onRowClicked(row: EventItem) {
+    this.eventDetailsSide.open();
+    this.selectedEventId = row.object_id;
+  }
+
+  closeDetails() {
+    this.eventDetailsSide.close();
+    this.selectedEventId = null;
   }
 
 }

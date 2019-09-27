@@ -1,4 +1,11 @@
-<div>
+<mat-sidenav-container>
+  <mat-sidenav #eventDetailsSide mode="side">
+    <button mat-raised-button (click)="closeDetails()" color="secondary">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-event-details [eventId]="selectedEventId"></app-event-details>
+  </mat-sidenav>
+  <mat-sidenav-content>
   <mat-card>
     <form [formGroup]="searchForm">
       <mat-card-title>Search events</mat-card-title>
@@ -58,8 +65,12 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)" ></tr>
+        <tr mat-row
+          *matRowDef="let row; columns: displayedColumns;"
+          (click)="onRowClicked(row)"
+          [ngClass]="{'highlight': selectedEventId == row.object_id}"></tr>
       </table>
     </div>
+  </mat-sidenav-content>
 
-</div>
+</mat-sidenav-container>
