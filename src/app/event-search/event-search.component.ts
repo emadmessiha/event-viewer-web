@@ -9,7 +9,6 @@ import { BaseComponent } from '../base-component';
 import { EventItem } from '../models/event.model';
 import { PagedEvents } from '../models/paged-events.model';
 import { EventsService } from '../services/events.service';
-import { EventDetailsComponent } from '../event-details/event-details.component';
 
 
 @Component({
