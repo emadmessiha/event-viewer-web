@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'https://event-viewer-core-dot-event-viewer-253305.appspot.com'
 };
