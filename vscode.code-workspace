@@ -4,6 +4,13 @@
 			"path": "."
 		}
   ],
+  "settings": {
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/*/**": true
+    }
+  },
   "extensions": {
     "recommendations": [
       "johnpapa.angular-essentials"

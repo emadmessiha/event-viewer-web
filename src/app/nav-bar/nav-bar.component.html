@@ -1,3 +1,8 @@
-<div>
-  <a [routerLink]="['/events']" >Event Viewer</a>
-</div>
+<mat-toolbar color="primary">
+
+  <a mat-button [routerLink]="['/events']" >
+    <mat-icon aria-hidden="false" aria-label="Event Viewer">home</mat-icon>
+    &nbsp;<span>Event Viewer</span>
+  </a>
+
+</mat-toolbar>
