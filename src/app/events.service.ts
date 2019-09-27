@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PagedEventResults } from './paged-event-results';
-import { EventItem } from './event.model';
+import { PagedEvents } from './models/paged-events.model';
+import { EventItem } from './models/event.model';
 
 @Injectable()
 export class EventsService {
@@ -16,9 +16,9 @@ export class EventsService {
     return d.toISOString().split('T')[0];
   }
 
-  searchEvents(startDate: Date, numDays: number, pageSize: number, pageNumber: number): Observable<PagedEventResults> {
+  searchEvents(startDate: Date, numDays: number, pageSize: number, pageNumber: number): Observable<PagedEvents> {
     const dateString: string = this.formatDate(startDate);
-    return this.http.get<PagedEventResults>(this.eventSearchUrl + `/${dateString}/${numDays}?page=${pageNumber}&pageSize=${pageSize}`);
+    return this.http.get<PagedEvents>(this.eventSearchUrl + `/${dateString}/${numDays}?page=${pageNumber}&pageSize=${pageSize}`);
   }
 
   getEventDetails(eventObjectId: string) {

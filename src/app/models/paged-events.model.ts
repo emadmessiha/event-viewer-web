@@ -1,6 +1,6 @@
 import { EventItem } from './event.model';
 
-export class PagedEventResults {
+export class PagedEvents {
   page: number;
   pageSize: number;
   totalResults: number;

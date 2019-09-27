@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EventSearchComponent } from './event-search/event-search.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'events', pathMatch: 'full' },
-  { path: 'events', loadChildren: () => import('./events/events.module').then(m => m.EventsModule) }
+  { path: '', component: EventSearchComponent },
+  { path: ':id', component: EventDetailsComponent}
 ];
 
 @NgModule({
