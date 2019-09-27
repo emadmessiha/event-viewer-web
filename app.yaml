@@ -1,3 +1,4 @@
+service: event-viewer-web
 runtime: nodejs10
 handlers:
 - url: /
