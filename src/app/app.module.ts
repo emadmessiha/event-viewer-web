@@ -1,13 +1,15 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { BasicHttpInterceptor } from './basic-http-interceptor';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventSearchComponent } from './event-search/event-search.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
+import { LoadingIndicatorService } from './services/loading-indicator.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    LoadingIndicatorService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicHttpInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

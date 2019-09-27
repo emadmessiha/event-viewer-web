@@ -8,7 +8,7 @@
 </mat-toolbar>
 
 <div class="main">
-  <div class="loading" *ngIf="showLoadingIndicator">
+  <div class="loading" *ngIf="showLoadingIndicator || (isLoading | async)">
     <mat-spinner></mat-spinner>
   </div>
   <router-outlet></router-outlet>

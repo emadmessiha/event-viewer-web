@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { EventsService } from '../events.service';
+import { EventsService } from '../services/events.service';
 import { EventItem } from '../models/event.model';
 import { PagedEvents } from '../models/paged-events.model';
 import { HttpErrorResponse } from '@angular/common/http';
