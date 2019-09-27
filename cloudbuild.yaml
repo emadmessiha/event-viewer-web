@@ -1,0 +1,14 @@
+steps:
+
+  # Install node packages
+  - name: 'gcr.io/cloud-builders/npm'
+    args: [ 'install' ]
+
+  # Build productive files
+  - name: 'gcr.io/cloud-builders/npm'
+    args: [ 'run', 'build', '--prod' ]
+
+  # Build docker image and push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/event-viewer-253305/event-viewer-web', '.']
+images: ['gcr.io/event-viewer-253305/event-viewer-web']
