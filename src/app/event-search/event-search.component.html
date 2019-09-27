@@ -1,3 +1,22 @@
 <div>
-  events search
+  <mat-card>
+    <form [formGroup]="searchForm">
+      <mat-card-title>Search events</mat-card-title>
+
+      <mat-form-field color="accent">
+        <input formControlName="startDate" matInput [matDatepicker]="picker" placeholder="Choose start date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>&nbsp;
+      <mat-form-field color="accent">
+        <mat-label>Select a duration</mat-label>
+        <mat-select formControlName="duration">
+          <mat-option value="7">One week</mat-option>
+          <mat-option value="30">One month</mat-option>
+          <mat-option value="90">Quarter (3 month)</mat-option>
+        </mat-select>
+      </mat-form-field>&nbsp;
+      <button (click)="submitSearch()" color="primary" mat-raised-button><mat-icon>search</mat-icon> SEARCH</button>
+    </form>
+    </mat-card>
 </div>

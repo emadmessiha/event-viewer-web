@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'event-viewer-web';
+  title = 'Event Viewer Web';
+  showLoadingIndicator = true;
+  constructor(private router: Router) {
+    this.router.events.subscribe((routerEvent: RouterEvent) => {
+      this.showLoadingIndicator = (routerEvent instanceof NavigationStart);
+    });
+  }
 }

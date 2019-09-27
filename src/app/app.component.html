@@ -1,5 +1,15 @@
-<app-nav-bar></app-nav-bar>
+<mat-toolbar color="primary">
 
-<div class="container">
+  <a mat-button [routerLink]="['']" >
+    <mat-icon aria-hidden="false" aria-label="Event Viewer">home</mat-icon>
+    &nbsp;<span>{{ title }}</span>
+  </a>
+
+</mat-toolbar>
+
+<div class="main">
+  <div class="loading" *ngIf="showLoadingIndicator">
+    <mat-spinner></mat-spinner>
+  </div>
   <router-outlet></router-outlet>
 </div>

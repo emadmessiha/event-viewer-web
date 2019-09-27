@@ -16,7 +16,7 @@ export class EventsService {
     return d.toISOString().split('T')[0];
   }
 
-  searchEvents(startDate: Date, numDays: number, pageSize: number, pageNumber: number): Observable<PagedEvents> {
+  searchEvents(startDate: Date, numDays: number, pageSize: number = 20, pageNumber: number = 1): Observable<PagedEvents> {
     const dateString: string = this.formatDate(startDate);
     return this.http.get<PagedEvents>(this.eventSearchUrl + `/${dateString}/${numDays}?page=${pageNumber}&pageSize=${pageSize}`);
   }
