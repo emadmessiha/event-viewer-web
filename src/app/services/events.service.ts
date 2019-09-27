@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PagedEvents } from '../models/paged-events.model';
 import { EventItem } from '../models/event.model';
+import { EventEmitter } from 'protractor';
 
 @Injectable()
 export class EventsService {
   eventsAPIBaseUrl: string = environment.apiUrl + '/events';
   eventSearchUrl: string = this.eventsAPIBaseUrl + '/search';
+  selectedEvent = new BehaviorSubject(null);
+  selectedEventChanged = this.selectedEvent.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   formatDate(d: Date): string {
     return d.toISOString().split('T')[0];
@@ -23,5 +27,9 @@ export class EventsService {
 
   getEventDetails(eventObjectId: string) {
     return this.http.get<EventItem>(this.eventsAPIBaseUrl + `/${eventObjectId}`);
+  }
+
+  emitEventSelectedEvent(eventId: string) {
+    this.selectedEvent.next(eventId);
   }
 }

@@ -2,13 +2,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseComponent } from '../base-component';
 import { EventItem } from '../models/event.model';
 import { PagedEvents } from '../models/paged-events.model';
 import { EventsService } from '../services/events.service';
+import { EventDetailsComponent } from '../event-details/event-details.component';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   currentTotalResults = 0;
   dataSource = new MatTableDataSource<EventItem>(this.events);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSidenav, { static: true }) eventDetailsSide: MatSidenav;
+  @ViewChild(MatDrawer, { static: true }) eventDetailsSide: MatDrawer;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -77,8 +78,13 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
   }
 
   onRowClicked(row: EventItem) {
-    this.eventDetailsSide.open();
-    this.selectedEventId = row.object_id;
+    if (this.selectedEventId === row.object_id) {
+      this.closeDetails();
+    } else {
+      this.selectedEventId = row.object_id;
+      this.eventsService.emitEventSelectedEvent(this.selectedEventId);
+      this.eventDetailsSide.open();
+    }
   }
 
   closeDetails() {

@@ -1,1 +1,20 @@
-<p>Selected event id {{ eventId }}</p>
+<div class="side-drawer">
+  <ng-template [ngIf]="event">
+    <mat-card-title>Event Details</mat-card-title>
+    <mat-list role="list">
+      <mat-list-item role="listitem"><strong>DATE:&nbsp;</strong>{{ event.event_date }}</mat-list-item>
+      <mat-list-item role="listitem"><strong>SUMMARY:&nbsp;</strong>{{ event !== null ? event.event_summary : '' }}</mat-list-item>
+      <mat-list-item role="listitem"><strong>TYPE:&nbsp;</strong>
+        <mat-chip-list>
+          <mat-chip color="accent">{{ event !== null ? event.event_type : '' }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item role="listitem"><strong>SIZE:&nbsp;</strong>{{ event !== null ? event.event_size : '' }}</mat-list-item>
+    </mat-list>
+    <br/>
+    <strong>DETAILS:</strong>
+    <div class="large-text-container" [innerHTML]="event !== null ? event.event_details : ''"></div>
+    <hr/>
+    <p>Selected event id {{ eventId }}</p>
+  </ng-template>
+</div>

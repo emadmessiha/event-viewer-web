@@ -12,14 +12,40 @@ td { cursor: pointer; }
   background-color: lightgoldenrodyellow;
 }
 
+.drawer-main-content {
+  padding-right: 0px;
+  padding: 1%;
+}
+
+.f-right {
+  float: right;
+}
+
+.side-drawer {
+  max-width: 450px;
+}
+
+.close-link {
+  padding: 0.5px;
+  cursor: pointer;
+}
+
 .table-container {
-  height: 200px;
+  height: 550px;
+  overflow: auto;
+}
+
+.large-text-container {
+  white-space: pre-line;
+  height: 400px;
   overflow: auto;
 }
 
 .main {
-  padding: 2%;
-  width: 95%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding: 1%;
+  width: 98%;
 }
 
 /* Absolute Center Spinner */

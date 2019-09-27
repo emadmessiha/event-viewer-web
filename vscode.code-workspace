@@ -9,6 +9,18 @@
       "**/.git/objects/**": true,
       "**/.git/subtree-cache/**": true,
       "**/node_modules/*/**": true
+    },
+    "launch": {
+      "configurations": [
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Debug in Chrome",
+          "url": "http://localhost:4200",
+          "webRoot": "${workspaceFolder}"
+        }
+      ],
+      "compounds": []
     }
   },
   "extensions": {
