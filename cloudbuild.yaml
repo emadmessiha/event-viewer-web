@@ -10,11 +10,6 @@ steps:
     entrypoint: npm
     args: [ 'run', 'build', '--prod' ]
 
-  # Build docker image and push
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/event-viewer-253305/event-viewer-web', '.']
-
   # Deploy app
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', '--version=prod']
-images: ['gcr.io/event-viewer-253305/event-viewer-web']

@@ -29,7 +29,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Docker build/run
 
 1. Open terminal and navigate to project directory, then run: `ng build --prod`
-2. Run docker build command: `docker build -t event-viewer-web .`
+2. Run docker build command: `docker build -t event-viewer-web -f Dockerfile_ev_web .`
 3. Once the Docker build completes (might take a few minutes due to downloading dependencies etc.), you can run the container using `docker run -p 3000:80 event-viewer-web`
 4. You can then browse the application through <http://localhost:3000>
 
