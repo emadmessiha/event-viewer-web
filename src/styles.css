@@ -12,6 +12,11 @@ td { cursor: pointer; }
   background-color: lightgoldenrodyellow;
 }
 
+.table-container {
+  height: 200px;
+  overflow: auto;
+}
+
 .main {
   padding: 2%;
   width: 95%;

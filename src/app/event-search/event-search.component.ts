@@ -57,7 +57,7 @@ export class EventSearchComponent extends BaseComponent implements OnInit {
         this.startDateControl.value,
         this.durationControl.value,
         this.currentPageSize,
-        this.currentPageIndex)
+        this.currentPageIndex + 1)
         .subscribe((pagedEvents: PagedEvents) => {
           this.events = pagedEvents.data;
           this.currentTotalResults = pagedEvents.totalResults;
