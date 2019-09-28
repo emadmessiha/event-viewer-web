@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PagedEvents } from '../models/paged-events.model';
 import { EventItem } from '../models/event.model';
-import { EventEmitter } from 'protractor';
+import { PagedEvents } from '../models/paged-events.model';
 
 @Injectable()
 export class EventsService {
