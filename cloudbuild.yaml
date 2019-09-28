@@ -7,8 +7,8 @@ steps:
 
   # Build productive files
   - name: node:10.16.3
-    entrypoint: ng
-    args: [ 'build', '--prod' ]
+    entrypoint: npm
+    args: [ 'run', 'prodbuild' ]
 
   # Deploy app
   - name: 'gcr.io/cloud-builders/gcloud'
