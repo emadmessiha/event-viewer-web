@@ -1,8 +1,0 @@
-service: event-viewer-web
-runtime: nodejs10
-handlers:
-- url: /
-  static_files: dist/event-viewer-web/index.html
-  upload: dist/event-viewer-web/index.html
-- url: /
-  static_dir: dist/event-viewer-web
